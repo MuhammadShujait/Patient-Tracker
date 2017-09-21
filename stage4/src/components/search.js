@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View,  TextInput,  AsyncStorage,StyleSheet } from 'react-native';
+import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions  } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text,
-     Separator , Item, Input, Button,Footer,FooterTab } from 'native-base';
+     Separator , Item, Input, Button,Footer,FooterTab,  Left, Body, Right,  Icon, Title  } from 'native-base';
 
 class Search extends Component {
 
@@ -11,7 +11,7 @@ class Search extends Component {
     }
     static navigationOptions = {
         title: "Search By Name",
-        headerLeft: false
+       header: false
     }
     constructor() {
         super()
@@ -45,8 +45,29 @@ class Search extends Component {
     }
 
     render() {
+
+
+
+       let swidth = Dimensions.get('window').width
+       let smwidth = (swidth-200)/2
+       let bimgwidth = Dimensions.get('window').width+400
+       let bimgheight = Dimensions.get('window').height
+       let bimgh = bimgheight-75
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-150)/2
+
+
         return (
             <Container>
+
+                    <Image source={require('../img/5.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                           <Header>
+      
+           <Body style={{width:150,marginLeft:margle}}>
+            <Title>Search By Name</Title>
+          </Body>
+        
+        </Header>
 <Content>
           <Item rounded>
             <Input placeholder='Enter Name' 
@@ -73,19 +94,19 @@ class Search extends Component {
            <List key={indexno}>
          
           <ListItem  bordered>
-            <Text style={styles.bigblue} >Name : {data.name}</Text>
+            <Text style={styles.bigblue} > Name : {data.name}</Text>
           </ListItem>
 
           <ListItem >
-            <Text>Disease : {data.disease}</Text>
+            <Text> Disease : {data.disease}</Text>
           </ListItem>
 
           <ListItem>
-            <Text> Medication: {data.mediacation}</Text>
+            <Text > Medication: {data.mediacation}</Text>
           </ListItem>
 
           <ListItem>
-            <Text>Fee Charged : {data.cost}</Text>
+            <Text> Fee Charged : {data.cost}</Text>
           </ListItem>
 
       
@@ -120,6 +141,7 @@ class Search extends Component {
 
 
 </Content>
+</Image>
                       <Footer>
           <FooterTab>
             <Button  onPress={() => {
@@ -128,7 +150,7 @@ class Search extends Component {
               <Text>Add Patient</Text>
             </Button>
 
-            <Button active  onPress={() => {
+            <Button  style={{backgroundColor: 'rgba(230, 230, 230, 0.1)'}} active  onPress={() => {
                         this.props.navigation.navigate("SearchRoute")
                     }}>
               <Text>Search By Name</Text>
@@ -170,7 +192,7 @@ export default Search
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :20,
+   marginLeft :20,fontSize: 30
 //    height:40
   }
 })

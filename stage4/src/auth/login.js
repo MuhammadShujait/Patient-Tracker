@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react';
-import {  AsyncStorage } from 'react-native';
+import {  AsyncStorage,Dimensions,Image } from 'react-native';
 import { Container, Header, Button, Text,
          Content, Form, Item, Input, Label,
           Left, Body, Right, Icon, Title  } from 'native-base';
@@ -51,24 +51,35 @@ class Login extends Component {
         console.disableYellowBox = true
     }
     render() {
+
+       let swidth = Dimensions.get('window').width
+       let smwidth = (swidth-200)/2
+       let bimgwidth = Dimensions.get('window').width
+       let bimgheight = Dimensions.get('window').height
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-100)/2
+
+
         return (
-        <Container>
+        <Container >
          
         <Header >
 
-          <Body>
+        <Body style={{width:100,marginLeft:margle}}>
             <Title>LogIn</Title>
           </Body>
 
         </Header>
+     <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
 
-        <Content>
-        
+        <Content style={{marginTop:100}} >
+      
+
         
           <Form>
         
         
-            <Item floatingLabel>
+            <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
               <Label>Email</Label>
 
               <Input onChangeText={(text) => {
@@ -77,7 +88,7 @@ class Login extends Component {
 
             </Item>
         
-            <Item floatingLabel last>
+            <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
               <Label>Password</Label>
 
               <Input secureTextEntry onChangeText={(text) => {
@@ -86,12 +97,19 @@ class Login extends Component {
         
         
             </Item>
-                  <Button rounded   onPress={this.Login.bind(this)}>
-            <Text>LogIn</Text>
-          </Button>
+ 
+
+                  <Button  style={{width:200,marginLeft:smwidth,marginRight:smwidth,marginTop:10}}   block   onPress={this.Login.bind(this)}>
+
+                           <Text>LogIn</Text>
+
+                  </Button>
         
+
+
           </Form>
         </Content>
+     </Image>
       </Container>
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  AsyncStorage,StyleSheet } from 'react-native';
+import {  AsyncStorage,StyleSheet,Dimensions,Image } from 'react-native';
 import * as firebase from "firebase"
 import { Container, Header, Button, Text,
          Content, Form, Item, Input, Label,
@@ -48,19 +48,31 @@ class Signup extends Component {
         console.disableYellowBox = true
     }
     render() {
+
+
+       let swidth = Dimensions.get('window').width
+       let smwidth = (swidth-200)/2
+       let bimgwidth = Dimensions.get('window').width
+       let bimgheight = Dimensions.get('window').height
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-100)/2
+
         return (
      
      
      <Container>  
            <Header >
 
-          <Body>
+         <Body style={{width:100,marginLeft:margle}}>
             <Title>SignUp</Title>
           </Body>
 
         </Header>
-     
-              <Item floatingLabel>
+      <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
+
+
+      <Content style={{marginTop:100}} >
+              <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
               <Label>Name</Label>
 
               <Input onChangeText={(text) => {
@@ -69,7 +81,7 @@ class Signup extends Component {
 
             </Item>
      
-         <Item floatingLabel>
+         <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
               <Label>Email</Label>
 
               <Input onChangeText={(text) => {
@@ -78,17 +90,19 @@ class Signup extends Component {
 
             </Item>
         
-            <Item floatingLabel >
+            <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
               <Label>Password</Label>
 
               <Input secureTextEntry onChangeText={(text) => {
                      this.setState({ password: text })
                  }} />
      </Item>
-     <Button rounded   onPress={this.createUser.bind(this)}>
+     <Button  style={{width:200,marginLeft:smwidth,marginRight:smwidth,marginTop:10}}   block  onPress={this.createUser.bind(this)}>
             <Text>SignUp</Text>
           </Button>
-        
+
+          </Content>
+        </Image>
      
      
      </Container>

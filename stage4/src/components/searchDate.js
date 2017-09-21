@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View,  TextInput,  AsyncStorage,StyleSheet } from 'react-native';
+import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions  } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text,
-     Separator , Item, Input, Button,Footer,FooterTab, } from 'native-base';
+     Separator , Item, Input, Button,Footer,FooterTab,  Left, Body, Right,  Icon, Title   } from 'native-base';
 
 
      
 class SearchDate extends Component {
    static navigationOptions = {
         title: "Search By Date",
-        headerLeft: false
+       header: false
     }
     componentWillMount() {
         console.disableYellowBox = true
@@ -49,8 +49,29 @@ class SearchDate extends Component {
 
 
     render() {
+
+
+       let swidth = Dimensions.get('window').width
+       let smwidth = (swidth-200)/2
+       let bimgwidth = Dimensions.get('window').width+400
+       let bimgheight = Dimensions.get('window').height
+       let bimgh = bimgheight-75
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-150)/2
+
+
         return (
             <Container>
+
+
+                    <Image source={require('../img/5.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                                       <Header>
+       
+           <Body style={{width:150,marginLeft:margle}}>
+            <Title>Search By Date</Title>
+          </Body>
+        
+        </Header>
             <Content>
                     <Item rounded>
 
@@ -83,11 +104,11 @@ class SearchDate extends Component {
 
    <List key={indexno}>
           <ListItem  bordered>
-            <Text style={styles.bigblue} >Name : {data.name}</Text>
+            <Text style={styles.bigblue} > Name : {data.name}</Text>
           </ListItem>
 
           <ListItem >
-            <Text>Disease : {data.disease}</Text>
+            <Text> Disease : {data.disease}</Text>
           </ListItem>
 
           <ListItem>
@@ -95,7 +116,7 @@ class SearchDate extends Component {
           </ListItem>
 
           <ListItem>
-            <Text>Fee Charged : {data.cost}</Text>
+            <Text> Fee Charged : {data.cost}</Text>
           </ListItem>
 
       
@@ -125,6 +146,7 @@ class SearchDate extends Component {
                 })}
 
 </Content>
+</Image>
                          <Footer>
           <FooterTab>
             <Button  onPress={() => {
@@ -139,7 +161,7 @@ class SearchDate extends Component {
               <Text>Search By Name</Text>
             </Button>
 
-            <Button active
+            <Button  style={{backgroundColor: 'rgba(230, 230, 230, 0.1)'}} active
                     onPress={() => {
                         this.props.navigation.navigate("SearchDateRoute")
                     }}>
@@ -164,7 +186,7 @@ export default SearchDate
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :20,
+   marginLeft :20,fontSize: 30
 //    height:40
   }
 })

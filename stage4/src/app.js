@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as firebase from "firebase";
 import Router from "../src/Navigation/Router";
 
+
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyDKkVg7c00GMLAQ1casU3Q2r_5sFAcumhg",

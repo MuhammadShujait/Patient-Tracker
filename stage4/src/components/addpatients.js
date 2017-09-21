@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
- import { AsyncStorage , StyleSheet } from 'react-native';
-import { Container, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text } from 'native-base'
+ import { AsyncStorage , StyleSheet,Image,Dimensions  } from 'react-native';
+import { Container, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text,
+  Left, Body, Right,  Icon, Title   } from 'native-base'
 import * as firebase from "firebase";
 
 class AddPatients extends Component {
     static navigationOptions = {
         title: "Add Patient",
-        headerLeft: false
+       header: false
     }
     constructor() {
         super()
@@ -35,13 +36,24 @@ class AddPatients extends Component {
                 obj
             }
             dataBase.push(data)
-            alert('patientadded')
+            alert('Patient Added Succesfully...')
         })
     }
     componentWillMount() {
         console.disableYellowBox = true
     }
     render() {
+
+       let swidth = Dimensions.get('window').width
+       let smwidth = (swidth-200)/2
+       let bimgwidth = Dimensions.get('window').width
+       let bimgheight = Dimensions.get('window').height
+       let bimgh = bimgheight-75
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-100)/2
+
+
+
         return (
 
 
@@ -49,7 +61,19 @@ class AddPatients extends Component {
 
 
       <Container>
-      
+
+
+
+       <Image source={require('../img/6.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                  
+                   <Header>
+       
+           <Body style={{width:100,marginLeft:margle}}>
+            <Title>Add Data</Title>
+          </Body>
+         
+        </Header>
+
         <Content>
 
           <Form>
@@ -97,7 +121,7 @@ class AddPatients extends Component {
 
 
             <Item secureTextEntry floatingLabel >
-              <Label>Cost</Label>
+              <Label>Fee Charged</Label>
               
               <Input
                  onChangeText={(text) => {
@@ -119,9 +143,11 @@ class AddPatients extends Component {
 
         </Content>
 
+        </Image>
+
  <Footer>
           <FooterTab>
-            <Button active  onPress={() => {
+            <Button  style={{backgroundColor: 'rgba(230, 230, 230, 0.1)'}} active  onPress={() => {
                         this.props.navigation.navigate("AddPatientsRoute")
                     }}>
               <Text>Add Patient</Text>

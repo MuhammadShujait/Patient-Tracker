@@ -47,32 +47,57 @@
 // }
 
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet } from 'react-native';
-import { Container, Header, Content, Button, Text,Item ,Icon,Input } from 'native-base';
+import { AppRegistry, View, StyleSheet ,Image,Dimensions } from 'react-native';
+import { Container, Header, Content, Button, Text,Item ,Icon,Input,Toast,Body,Title } from 'native-base';
 
 
 
 
 export default class  Home extends Component {
+
+ constructor(props) {
+    super(props);
+    this.state = {
+      showToast: false
+    }
+  }
     static navigationOptions = {
-        title: "Welcome Doctor"
+        title: "Welcome Doctor",
+        header:false
     }
 
 
+
+
   render() {
+
+
+      let bimgwidth = Dimensions.get('window').width
+      let bimgheight = Dimensions.get('window').height
+      let wdth = Dimensions.get('window').width
+      let margle= (wdth-150)/2
+
+      
     return (
       // Try setting `justifyContent` to `center`.
       // Try setting `flexDirection` to `row`.
+          <Image source={require('./img/4.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
+                 <Header>
+      
+           <Body style={{width:150,marginLeft:margle}}>
+            <Title>Welcome Doctor</Title>
+          </Body>
+        
+        </Header>
+          
       <Container style={{
-        flex: 3,
-        flexDirection: 'column',
-            justifyContent: 'center',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
       }}>
    
 
-
-             <Button block style={styles.blue}
+             <Button block bordered dark style={styles.blue}
                      onPress={() => {
                         this.props.navigation.navigate("SignupRoute")
                      }} >
@@ -80,18 +105,20 @@ export default class  Home extends Component {
           </Button>       
           
           
-             <Button block   style={styles.red}
+             <Button block bordered dark  style={styles.red}
                     onPress={() => {
                         this.props.navigation.navigate("LoginRoute")
                     }}
                    title="Login">
             <Text>LogIn(Already Registered)</Text>
-          </Button>
-
-
+          </Button>  
+            
+            
+   
 
 
       </Container>
+      </Image>
     );
   }
 };
@@ -101,12 +128,17 @@ AppRegistry.registerComponent('AwesomeProject', () => JustifyContentBasics);
 const styles = StyleSheet.create({
  
   red: {
-    marginTop:20,width:600,
-    marginLeft:80
+    height:50,
+    marginTop:50,
+    backgroundColor: 'rgba(230, 230, 230, 0.5)'
+//,width:600,
+//     marginLeft:80
    
   },
     blue: {
-    width:600,marginLeft:80
+      height:50,
+      backgroundColor: 'rgba(230, 230, 230, 0.5)'
+//     width:600,marginLeft:80
    
   }
 });
