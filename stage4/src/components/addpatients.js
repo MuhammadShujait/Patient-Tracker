@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text,
   Left, Body, Right,  Icon, Title   } from 'native-base'
 import * as firebase from "firebase";
+import DatePicker from 'react-native-datepicker';
+
+
 
 class AddPatients extends Component {
     static navigationOptions = {
@@ -16,12 +19,17 @@ class AddPatients extends Component {
             disease: "",
             mediacation: "",
             cost: "",
-            date : ''
+            date : "2017-09-15"
         }
     }
-    saveData() {
 
-        AsyncStorage.getItem("user").then((responce) => {
+
+
+    saveData() {
+     if(
+            this.state.name !== '' &&  this.state.disease !== '' && this.state.mediacation !== ''
+            && this.state.cost !== '' && this.state.date !== ''
+         ) {     AsyncStorage.getItem("user").then((responce) => {
             var PatientUid = responce
             let obj = {
                 name: this.state.name,
@@ -37,7 +45,12 @@ class AddPatients extends Component {
             }
             dataBase.push(data)
             alert('Patient Added Succesfully...')
-        })
+        })}
+
+        else{
+             alert('Provide complete details about Patient') 
+
+   }
     }
     componentWillMount() {
         console.disableYellowBox = true
@@ -46,11 +59,11 @@ class AddPatients extends Component {
 
        let swidth = Dimensions.get('window').width
        let smwidth = (swidth-200)/2
-       let bimgwidth = Dimensions.get('window').width
+       let bimgwidth = Dimensions.get('window').width*2
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
-       let margle= (wdth-100)/2
+       let margle= (wdth-200)/2
 
 
 
@@ -64,8 +77,9 @@ class AddPatients extends Component {
 
 
 
-       <Image source={require('../img/6.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                    
                   
+     <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
                    <Header>
        
            <Body style={{width:100,marginLeft:margle}}>
@@ -74,13 +88,13 @@ class AddPatients extends Component {
          
         </Header>
 
-        <Content>
+        <Content >
 
           <Form>
 
 
 
-            <Item floatingLabel>
+            <Item floatingLabel >
               <Label>PatientName</Label>
 
                <Input       
@@ -88,7 +102,6 @@ class AddPatients extends Component {
                       this.setState({ name: text })
                      }}/>  
             </Item>
-
 
              <Item floatingLabel>
               <Label>Disease</Label>
@@ -99,7 +112,6 @@ class AddPatients extends Component {
                      }}/>
             </Item>   
 
-
             <Item floatingLabel>
               <Label>Medication</Label>
 
@@ -109,17 +121,6 @@ class AddPatients extends Component {
                      }}/>
             </Item>
 
-            <Item floatingLabel>
-
-              <Label>DD-MM-YYYY</Label>
-
-              <Input 
-                    onChangeText={(text) => {
-                         this.setState({ date: text })
-                     }}/>
-            </Item>
-
-
             <Item secureTextEntry floatingLabel >
               <Label>Fee Charged</Label>
               
@@ -128,6 +129,33 @@ class AddPatients extends Component {
                          this.setState({ cost: text })
                      }}/>
             </Item>
+
+
+               <DatePicker
+               style={{width: 200,marginLeft:margle,marginTop:20}}
+               date={this.state.date}
+               mode="date"
+               placeholder="select date"
+               format="YYYY-MM-DD"
+               minDate="2016-01-01"
+               maxDate="2020-06-01"
+               confirmBtnText="Confirm"
+               cancelBtnText="Cancel"
+               customStyles={{
+               dateIcon: {
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0
+               },
+               dateInput: {
+               marginLeft: 36
+               }
+               // ... You can check the source to find the other keys. 
+               }}
+               onDateChange={(date) => {this.setState({date: date})}}
+               />
+
 
           <Button style={styles.bigblue} rounded 
            onPress={this.saveData.bind(this)}  >
@@ -142,31 +170,33 @@ class AddPatients extends Component {
 
 
         </Content>
+</Image>
 
-        </Image>
-
+     
  <Footer>
           <FooterTab>
-            <Button  style={{backgroundColor: 'rgba(230, 230, 230, 0.1)'}} active  onPress={() => {
+            <Button 
+              style={{backgroundColor: 'rgba(230, 230, 230, 0.1)',alignItems: 'center',justifyContent:'center'}}
+               active  onPress={() => {
                         this.props.navigation.navigate("AddPatientsRoute")
                     }}>
               <Text>Add Patient</Text>
             </Button>
 
-            <Button  onPress={() => {
+            <Button style={{alignItems: 'center'}}  onPress={() => {
                         this.props.navigation.navigate("SearchRoute")
                     }}>
               <Text>Search By Name</Text>
             </Button>
 
-            <Button 
+            <Button style={{alignItems: 'center'}}
                     onPress={() => {
                         this.props.navigation.navigate("SearchDateRoute")
                     }}>
               <Text>Search By Date</Text>
             </Button>
 
-            <Button onPress={() => {
+            <Button style={{alignItems: 'center'}} onPress={() => {
                         this.props.navigation.navigate("VeiwAllRoute")
                     }}>
               <Text>View All Data</Text>
@@ -174,7 +204,7 @@ class AddPatients extends Component {
 
           </FooterTab>
         </Footer>
-
+        
       </Container>
 
 
@@ -227,11 +257,13 @@ class AddPatients extends Component {
 }
 export default AddPatients
 
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-145)/2
 
 
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :20
+   marginLeft :margle,width:145,
   }
 })

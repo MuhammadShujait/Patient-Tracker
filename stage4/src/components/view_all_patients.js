@@ -67,11 +67,9 @@ class Viewpatients extends Component {
 
     render() {
 
-
-
-       let swidth = Dimensions.get('window').width
+ let swidth = Dimensions.get('window').width
        let smwidth = (swidth-200)/2
-       let bimgwidth = Dimensions.get('window').width+400
+       let bimgwidth = Dimensions.get('window').width*2
        let wdth = Dimensions.get('window').width
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
@@ -84,7 +82,7 @@ class Viewpatients extends Component {
 
 
             <Container>
-                   <Image source={require('../img/5.jpg')} style={{height:bimgh,width:bimgwidth,}}> 
+                    <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
                     
                     
        <Header>
@@ -142,7 +140,7 @@ class Viewpatients extends Component {
 
 
                  </Content>
- </Image> 
+</Image> 
 
 
 

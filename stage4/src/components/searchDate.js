@@ -3,7 +3,7 @@ import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions  } from 're
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text,
      Separator , Item, Input, Button,Footer,FooterTab,  Left, Body, Right,  Icon, Title   } from 'native-base';
-
+import DatePicker from 'react-native-datepicker';
 
      
 class SearchDate extends Component {
@@ -18,9 +18,11 @@ class SearchDate extends Component {
         super()
         this.state = {
             data: [],
-            date: ""
+            date: "2016-09-17"
         }
     }
+  
+
 
     getDataByDate() {
         AsyncStorage.getItem("user").then((responce) => {
@@ -53,18 +55,19 @@ class SearchDate extends Component {
 
        let swidth = Dimensions.get('window').width
        let smwidth = (swidth-200)/2
-       let bimgwidth = Dimensions.get('window').width+400
+       let bimgwidth = Dimensions.get('window').width*2
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
-       let margle= (wdth-150)/2
+       let margle= (wdth-200)/2
 
 
         return (
             <Container>
 
 
-                    <Image source={require('../img/5.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                    <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
+                    
                                        <Header>
        
            <Body style={{width:150,marginLeft:margle}}>
@@ -72,16 +75,32 @@ class SearchDate extends Component {
           </Body>
         
         </Header>
-            <Content>
-                    <Item rounded>
-
-            <Input placeholder='dd-mm-yyyy' 
-                  onChangeText={(text) => {
-                    this.setState({ date: text })
-                }}
-            />
-
-          </Item>
+            <Content >
+            
+               <DatePicker
+               style={{width: 200,marginLeft:margle,marginTop:20}}
+               date={this.state.date}
+               mode="date"
+               placeholder="select date"
+               format="YYYY-MM-DD"
+               minDate="2016-01-01"
+               maxDate="2020-06-01"
+               confirmBtnText="Confirm"
+               cancelBtnText="Cancel"
+               customStyles={{
+               dateIcon: {
+               position: 'absolute',
+               left: 0,
+               top: 4,
+               marginLeft: 0
+               },
+               dateInput: {
+               marginLeft: 36
+               }
+               // ... You can check the source to find the other keys. 
+               }}
+               onDateChange={(date) => {this.setState({date: date})}}
+               />
 
 
 
@@ -145,8 +164,8 @@ class SearchDate extends Component {
                     )
                 })}
 
-</Content>
-</Image>
+</Content >
+ </Image> 
                          <Footer>
           <FooterTab>
             <Button  onPress={() => {
@@ -183,10 +202,14 @@ class SearchDate extends Component {
     }
 }
 export default SearchDate
+
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-165)/2
+
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :20,fontSize: 30
+   marginLeft :margle,fontSize: 20,width:165,
 //    height:40
   }
 })

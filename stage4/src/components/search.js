@@ -50,7 +50,7 @@ class Search extends Component {
 
        let swidth = Dimensions.get('window').width
        let smwidth = (swidth-200)/2
-       let bimgwidth = Dimensions.get('window').width+400
+       let bimgwidth = Dimensions.get('window').width*2
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
@@ -60,7 +60,8 @@ class Search extends Component {
         return (
             <Container>
 
-                    <Image source={require('../img/5.jpg')} style={{height:bimgh,width:bimgwidth,}}>
+                   
+<Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
                            <Header>
       
            <Body style={{width:150,marginLeft:margle}}>
@@ -68,7 +69,8 @@ class Search extends Component {
           </Body>
         
         </Header>
-<Content>
+                    
+<Content >
           <Item rounded>
             <Input placeholder='Enter Name' 
                    onChangeText={(text) => {
@@ -142,6 +144,7 @@ class Search extends Component {
 
 </Content>
 </Image>
+
                       <Footer>
           <FooterTab>
             <Button  onPress={() => {
@@ -187,12 +190,14 @@ class Search extends Component {
 }
 export default Search
 
+       let wdth = Dimensions.get('window').width
+       let margle= (wdth-165)/2
 
 
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :20,fontSize: 30
+   marginLeft :margle,fontSize: 20,width:165
 //    height:40
   }
 })

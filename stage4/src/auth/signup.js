@@ -61,6 +61,7 @@ class Signup extends Component {
      
      
      <Container>  
+         <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth}}>
            <Header >
 
          <Body style={{width:100,marginLeft:margle}}>
@@ -68,11 +69,11 @@ class Signup extends Component {
           </Body>
 
         </Header>
-      <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
+     
 
 
-      <Content style={{marginTop:100}} >
-              <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
+      <Content style={{marginTop:10}} >
+              <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20,marginLeft:20}}>
               <Label>Name</Label>
 
               <Input onChangeText={(text) => {
@@ -81,7 +82,7 @@ class Signup extends Component {
 
             </Item>
      
-         <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
+         <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20,marginLeft:20}}>
               <Label>Email</Label>
 
               <Input onChangeText={(text) => {
@@ -90,7 +91,7 @@ class Signup extends Component {
 
             </Item>
         
-            <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20}}>
+            <Item floatingLabel style={{backgroundColor: 'rgba(230, 230, 230, 0.8)',marginRight:20,marginLeft:20}}>
               <Label>Password</Label>
 
               <Input secureTextEntry onChangeText={(text) => {
@@ -102,8 +103,8 @@ class Signup extends Component {
           </Button>
 
           </Content>
-        </Image>
-     
+        
+     </Image>
      
      </Container>
      

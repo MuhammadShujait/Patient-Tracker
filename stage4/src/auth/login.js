@@ -62,7 +62,7 @@ class Login extends Component {
 
         return (
         <Container >
-         
+          <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth}}>
         <Header >
 
         <Body style={{width:100,marginLeft:margle}}>
@@ -70,9 +70,9 @@ class Login extends Component {
           </Body>
 
         </Header>
-     <Image source={require('../img/3.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
+    
 
-        <Content style={{marginTop:100}} >
+        <Content style={{marginTop:10}} >
       
 
         
@@ -109,7 +109,7 @@ class Login extends Component {
 
           </Form>
         </Content>
-     </Image>
+    </Image>
       </Container>
 
 

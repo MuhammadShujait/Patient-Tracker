@@ -81,7 +81,8 @@ export default class  Home extends Component {
     return (
       // Try setting `justifyContent` to `center`.
       // Try setting `flexDirection` to `row`.
-          <Image source={require('./img/4.jpg')} style={{height:bimgheight,width:bimgwidth,}}>
+         <Container>
+           <Image source={require('./img/4.jpg')} style={{height:bimgheight,width:bimgwidth}}>
                  <Header>
       
            <Body style={{width:150,marginLeft:margle}}>
@@ -119,6 +120,8 @@ export default class  Home extends Component {
 
       </Container>
       </Image>
+      </Container>
+    
     );
   }
 };
@@ -130,14 +133,14 @@ const styles = StyleSheet.create({
   red: {
     height:50,
     marginTop:50,
-    backgroundColor: 'rgba(230, 230, 230, 0.5)'
+    backgroundColor: 'rgba(230, 230, 230, 0.8)'
 //,width:600,
 //     marginLeft:80
    
   },
     blue: {
       height:50,
-      backgroundColor: 'rgba(230, 230, 230, 0.5)'
+      backgroundColor: 'rgba(230, 230, 230, 0.8)'
 //     width:600,marginLeft:80
    
   }
