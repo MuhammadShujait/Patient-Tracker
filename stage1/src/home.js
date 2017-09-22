@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AsyncStorage,Image,Dimensions  } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Button, Text, Label } from "native-base";
+import { Container, Header, Content, Form, Item, Input, Button, Text, Label,Body,Title } from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid'
 
 var array = []
@@ -8,7 +8,8 @@ var array = []
 class Home extends Component {
 
     static navigationOptions = {
-        title: "Welcome DOCTOR"
+        title: "Welcome DOCTOR",
+        header:false
     }
 
 getRout(){
@@ -27,8 +28,8 @@ nRout(){
 
           let bimgwidth = Dimensions.get('window').width
           let bimgheight = Dimensions.get('window').height
-          let butmargin = bimgheight/4
-
+          let butmargin = bimgheight/8
+          let margle= (bimgwidth-150)/2
         return (
             <Container style={{
         flex: 1,
@@ -38,7 +39,17 @@ nRout(){
         backgroundColor: '#635DB7',
         
       }} >
+
              <Image source={require('./img/4.jpg')} style={{height:bimgheight,width:bimgwidth,}}> 
+         <Header>
+        
+          <Body style={{width:150,marginLeft:margle}}>
+            <Title>Welcome Doctor</Title>
+          </Body>
+        
+         </Header>
+
+         
                 <Content style={{
                        marginTop:butmargin
                        }}  >

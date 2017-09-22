@@ -26,6 +26,7 @@ class AddPatients extends Component {
 
 
     saveData() {
+
      if(
             this.state.name !== '' &&  this.state.disease !== '' && this.state.mediacation !== ''
             && this.state.cost !== '' && this.state.date !== ''
@@ -43,8 +44,10 @@ class AddPatients extends Component {
             let data = {
                 obj
             }
+            
             dataBase.push(data)
             alert('Patient Added Succesfully...')
+
         })}
 
         else{
@@ -64,7 +67,7 @@ class AddPatients extends Component {
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
        let margle= (wdth-200)/2
-
+        let margle2= (wdth-100)/2
 
 
         return (
@@ -82,7 +85,7 @@ class AddPatients extends Component {
      <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
                    <Header>
        
-           <Body style={{width:100,marginLeft:margle}}>
+           <Body style={{width:100,marginLeft:margle2}}>
             <Title>Add Data</Title>
           </Body>
          

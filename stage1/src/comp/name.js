@@ -73,6 +73,7 @@ render(){
           let bimgwidth = Dimensions.get('window').width
           let bimgheight = Dimensions.get('window').height
            let margle= (bimgwidth-120)/2
+            let margle3= (bimgwidth-85)/2
 return(
 
 <Container>
@@ -105,7 +106,7 @@ return(
                                 }}/>
           </Item>
 
-          <Button rounded onPress={this.getDataByName.bind(this)}>
+          <Button style={{width:85,marginLeft:margle3,marginTop:5}} rounded onPress={this.getDataByName.bind(this)}>
             <Text>Search</Text>
           </Button>
 

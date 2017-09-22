@@ -64,6 +64,7 @@ export default class  Home extends Component {
     static navigationOptions = {
         title: "Welcome Doctor",
         header:false
+        // headerPressColorAndroid:'#f44242'
     }
 
 

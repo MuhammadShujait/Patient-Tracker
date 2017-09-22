@@ -59,7 +59,7 @@ class SearchDate extends Component {
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
-       let margle= (wdth-200)/2
+       let margle= (wdth-150)/2
 
 
         return (

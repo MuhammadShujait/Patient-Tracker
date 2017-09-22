@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { AsyncStorage,Dimensions,Image } from 'react-native';
 import { Container ,Content ,List , ListItem, Text ,Button, Header, Left, Body, Right, Icon, Title  } from "native-base";
-
+import Datepicker from 'react-native-datepicker';
 
 
  class ViewAll extends Component {
+
     constructor() {
         super()
         this.state = {
@@ -13,14 +14,10 @@ import { Container ,Content ,List , ListItem, Text ,Button, Header, Left, Body, 
         }
     }
 
-
     static navigationOptions = {
         title: "View All Data",
         header: false
     }
-
-
-    
   
 componentWillMount() {
 
@@ -32,9 +29,7 @@ componentWillMount() {
                     let newdata = []     
                                 
                     console.log(responce)
-                    let mydata = JSON.parse(responce)
-                                             
-                                             
+                    let mydata = JSON.parse(responce)                        
                     console.log(mydata)   
                     console.log(mydata.length)   
                              
