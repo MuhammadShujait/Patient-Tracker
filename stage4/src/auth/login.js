@@ -34,7 +34,7 @@ class Login extends Component {
         firebase.auth().signInWithEmailAndPassword(email, pass)
             .then((responce) => {
                 const uid = responce.uid
-                AsyncStorage.setItem("user", uid)
+                AsyncStorage.setItem("userid", uid)
                     .then(() => {
                         this.props.navigation.navigate('VeiwAllRoute')
                     })

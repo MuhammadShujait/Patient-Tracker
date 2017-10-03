@@ -47,7 +47,7 @@
 // }
 
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet ,Image,Dimensions } from 'react-native';
+import { AppRegistry, View, StyleSheet ,Image,Dimensions,AsyncStorage } from 'react-native';
 import { Container, Header, Content, Button, Text,Item ,Icon,Input,Toast,Body,Title } from 'native-base';
 
 
@@ -61,11 +61,38 @@ export default class  Home extends Component {
       showToast: false
     }
   }
+
+   componentWillMount() {
+     
+  this.checkstorage()
+
+   }
+
+
+
+        checkstorage(){
+            AsyncStorage.getItem("userid").then((respon) => {
+             PatientUid = respon    
+
+               if (PatientUid !== null){
+                this.navig()
+          }
+        } ) }
+
+navig(){
+
+  this.props.navigation.navigate('VeiwAllRoute')
+
+}
+
+
+
     static navigationOptions = {
         title: "Welcome Doctor",
         header:false
         // headerPressColorAndroid:'#f44242'
     }
+
 
 
 

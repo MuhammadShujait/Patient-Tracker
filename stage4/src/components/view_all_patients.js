@@ -13,7 +13,8 @@ class Viewpatients extends Component {
         super()
         this.state = {
             Patient: [],
-            spinner:<Spinner color='green' />
+            spinner:<Spinner color='green' />,
+            loading: false
             
         }
     }
@@ -24,7 +25,7 @@ class Viewpatients extends Component {
     componentWillMount() {
         console.disableYellowBox = true
 
-
+        this.setState({ loading: true })
 
         this.getPatients()
         
@@ -33,7 +34,11 @@ class Viewpatients extends Component {
 
     }
 
-
+    handleError() {
+        if (this.state.loading) {
+            return <Spinner />
+        }
+    }
     getPatients() {
 
 
@@ -50,7 +55,8 @@ class Viewpatients extends Component {
                     array.push(key[a].obj)
                 }
                 this.setState({
-                    Patient: array
+                    Patient: array,
+                    loading: false
                 })
 
 
@@ -60,7 +66,13 @@ class Viewpatients extends Component {
 
     };
 
+logout(){
+    AsyncStorage.setItem("userid","").then(()=>{
+        this.props.navigation.navigate("Homeroute")
+    }
 
+    )
+}
 
 
 
@@ -73,7 +85,7 @@ class Viewpatients extends Component {
        let wdth = Dimensions.get('window').width
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
-       let margle= (wdth-150)/2
+       let margle= (wdth-120)/2
 
 
 
@@ -82,20 +94,32 @@ class Viewpatients extends Component {
 
 
             <Container>
-                    <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
+                    <Image source={require('../img/1.jpg')} style={{
+                    flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: "cover"
+                }}>  
                     
                     
        <Header>
          
-           <Body style={{width:150,marginLeft:margle}}>
-            <Title>View All Patients</Title>
+           <Body style={{width:120,marginLeft:margle}}>
+            <Title>All Patients</Title>
           </Body>
+             <Right>
+          
+            <Button style={{backgroundColor:'black'}} onPress={this.logout.bind(this)} >
+              <Title>LogOut</Title>
+            </Button>
+        
+          </Right>
          
         </Header>
                   <Content>
 
             
-
+              {this.handleError()}
 
 
                 {
@@ -145,7 +169,7 @@ class Viewpatients extends Component {
 
 
 
-<Container>
+
                           <Footer >
           <FooterTab>
             <Button  onPress={() => {
@@ -177,7 +201,7 @@ class Viewpatients extends Component {
         </Footer>
            
            </Container>
-            </Container>
+           
 
 
 

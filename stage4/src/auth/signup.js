@@ -31,7 +31,7 @@ class Signup extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, pass)
             .then((responce) => {
                 const uid = responce.uid
-                AsyncStorage.setItem("user", uid)
+                AsyncStorage.setItem("userid", uid)
                     .then(() => {
                         this.props.navigation.navigate('AddPatientsRoute')
                     })

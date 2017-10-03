@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from "firebase";
 import Router from "../src/Navigation/Router";
-
+import { Root }  from 'native-base';
 
 
 // Initialize Firebase
@@ -19,7 +19,11 @@ firebase.initializeApp(config);
 class App extends Component {
     render() {
         return (
+            <Root>
+            
                 <Router />
+            
+            </Root>
         )
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions  } from 'react-native';
+import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions,
+            BackAndroid  } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text,
      Separator , Item, Input, Button,Footer,FooterTab,  Left, Body, Right,  Icon, Title  } from 'native-base';
@@ -8,6 +9,7 @@ class Search extends Component {
 
     componentWillMount() {
         console.disableYellowBox = true
+        
     }
     static navigationOptions = {
         title: "Search By Name",
@@ -20,6 +22,9 @@ class Search extends Component {
             name: ""
         }
     }
+
+
+   
 
     getDataByName() {
         AsyncStorage.getItem("user").then((responce) => {
@@ -43,7 +48,13 @@ class Search extends Component {
             })
         })
     }
+logout(){
+    AsyncStorage.setItem("userid","").then(()=>{
+        this.props.navigation.navigate("Homeroute")
+    }
 
+    )
+}
     render() {
 
 
@@ -54,20 +65,31 @@ class Search extends Component {
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
-       let margle= (wdth-150)/2
+       let margle= (wdth-130)/2
 
 
         return (
             <Container>
 
                    
-<Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
+       <Image source={require('../img/1.jpg')} style={{
+                    flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: "cover"
+                }}> 
                            <Header>
       
-           <Body style={{width:150,marginLeft:margle}}>
-            <Title>Search By Name</Title>
+           <Body style={{width:130,marginLeft:margle}}>
+            <Title>Enter Name</Title>
           </Body>
+                  <Right>
+          
+            <Button style={{backgroundColor:'black'}} onPress={this.logout.bind(this)} >
+              <Title>LogOut</Title>
+            </Button>
         
+          </Right>
         </Header>
                     
 <Content >
@@ -96,7 +118,7 @@ class Search extends Component {
            <List key={indexno}>
          
           <ListItem  bordered>
-            <Text style={styles.bigblue} > Name : {data.name}</Text>
+            <Text style={styles.bigblue2} > Name : {data.name}</Text>
           </ListItem>
 
           <ListItem >
@@ -197,7 +219,15 @@ export default Search
 const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
-   marginLeft :margle,fontSize: 20,width:165
+   marginLeft :margle,
+   fontSize: 20,
+   width:165
+//    height:40
+  },
+  bigblue2: {
+   marginTop :20,
+   fontSize: 20,
+   width:165
 //    height:40
   }
 })

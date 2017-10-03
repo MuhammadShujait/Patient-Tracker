@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
  import { AsyncStorage , StyleSheet,Image,Dimensions  } from 'react-native';
-import { Container, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text,
-  Left, Body, Right,  Icon, Title   } from 'native-base'
+import { Container, Root, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text,
+  Left, Body, Right,  Icon, Title ,Toast  } from 'native-base'
 import * as firebase from "firebase";
 import DatePicker from 'react-native-datepicker';
 
@@ -19,7 +19,8 @@ class AddPatients extends Component {
             disease: "",
             mediacation: "",
             cost: "",
-            date : "2017-09-15"
+            date : "2017-10-01",
+            showToast: false
         }
     }
 
@@ -30,7 +31,7 @@ class AddPatients extends Component {
      if(
             this.state.name !== '' &&  this.state.disease !== '' && this.state.mediacation !== ''
             && this.state.cost !== '' && this.state.date !== ''
-         ) {     AsyncStorage.getItem("user").then((responce) => {
+         ) {     AsyncStorage.getItem("userid").then((responce) => {
             var PatientUid = responce
             let obj = {
                 name: this.state.name,
@@ -46,18 +47,46 @@ class AddPatients extends Component {
             }
             
             dataBase.push(data)
-            alert('Patient Added Succesfully...')
+                      
+            
+            Toast.show({
+                text: 'Patient Added Successfully...',
+                position: 'bottom',
+                duration: 2000,
+                type: "success"
+            })
 
-        })}
+           this.setState({ name: "" ,
+                           disease:"",
+                           mediacation:"",
+                           cost:""
+                        })
+
+
+        }
+    )}
 
         else{
-             alert('Provide complete details about Patient') 
+              Toast.show({
+                text: "Provide Complete Data!",
+                position: "bottom",
+                type: "warning",
+                duration: 2000,
+            }) 
 
    }
     }
     componentWillMount() {
         console.disableYellowBox = true
     }
+
+    logout(){
+    AsyncStorage.setItem("userid","").then(()=>{
+        this.props.navigation.navigate("Homeroute")
+    }
+
+    )
+}
     render() {
 
        let swidth = Dimensions.get('window').width
@@ -79,15 +108,27 @@ class AddPatients extends Component {
       <Container>
 
 
-
+      <Image source={require('../img/1.jpg')} style={{
+                    flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: "cover"
+                }}> 
                     
                   
-     <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
+     
                    <Header>
        
            <Body style={{width:100,marginLeft:margle2}}>
             <Title>Add Data</Title>
           </Body>
+             <Right>
+          
+            <Button style={{backgroundColor:'black'}} onPress={this.logout.bind(this)} >
+              <Title>LogOut</Title>
+            </Button>
+        
+          </Right>
          
         </Header>
 
@@ -124,7 +165,7 @@ class AddPatients extends Component {
                      }}/>
             </Item>
 
-            <Item secureTextEntry floatingLabel >
+            <Item keyboardType = 'numeric' floatingLabel >
               <Label>Fee Charged</Label>
               
               <Input

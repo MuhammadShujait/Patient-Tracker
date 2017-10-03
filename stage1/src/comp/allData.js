@@ -50,12 +50,6 @@ componentWillMount() {
                                     
                 })
                 
-
-
-   
-
-
-
 }
 
 
@@ -71,7 +65,7 @@ return(
 
 <Container>
 
-  <Image source={require('../img/5.jpg')} style={{height:bimgheight,width:bimgwidth,}}> 
+  <Image source={require('../img/1.jpg')} style={{height:bimgheight,width:bimgwidth,}}> 
           <Header>
         
           <Body style={{width:150,marginLeft:margle}}>

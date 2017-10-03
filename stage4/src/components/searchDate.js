@@ -18,7 +18,7 @@ class SearchDate extends Component {
         super()
         this.state = {
             data: [],
-            date: "2016-09-17"
+            date: "2017-10-01"
         }
     }
   
@@ -47,7 +47,13 @@ class SearchDate extends Component {
         })
     }
 
+logout(){
+    AsyncStorage.setItem("userid","").then(()=>{
+        this.props.navigation.navigate("Homeroute")
+    }
 
+    )
+}
 
 
     render() {
@@ -59,26 +65,38 @@ class SearchDate extends Component {
        let bimgheight = Dimensions.get('window').height
        let bimgh = bimgheight-75
        let wdth = Dimensions.get('window').width
-       let margle= (wdth-150)/2
+       let margle= (wdth-110)/2
+       let margle2= (wdth-200)/2
 
 
         return (
             <Container>
 
 
-                    <Image source={require('../img/1.jpg')} style={{height:bimgh,width:bimgwidth,}}>  
+                    <Image source={require('../img/1.jpg')} style={{
+                    flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: "cover"
+                }}>
                     
                                        <Header>
        
-           <Body style={{width:150,marginLeft:margle}}>
-            <Title>Search By Date</Title>
+           <Body style={{width:110,marginLeft:margle}}>
+            <Title>Enter Date</Title>
           </Body>
+           <Right>
+          
+            <Button style={{backgroundColor:'black'}} onPress={this.logout.bind(this)} >
+              <Title>LogOut</Title>
+            </Button>
         
+          </Right>
         </Header>
             <Content >
             
                <DatePicker
-               style={{width: 200,marginLeft:margle,marginTop:20}}
+               style={{width: 200,marginLeft:margle2,marginTop:20}}
                date={this.state.date}
                mode="date"
                placeholder="select date"
@@ -123,7 +141,7 @@ class SearchDate extends Component {
 
    <List key={indexno}>
           <ListItem  bordered>
-            <Text style={styles.bigblue} > Name : {data.name}</Text>
+            <Text style={styles.bigblue2} > Name : {data.name}</Text>
           </ListItem>
 
           <ListItem >
@@ -165,7 +183,8 @@ class SearchDate extends Component {
                 })}
 
 </Content >
- </Image> 
+</Image>     
+  
                          <Footer>
           <FooterTab>
             <Button  onPress={() => {
@@ -210,6 +229,11 @@ const styles = StyleSheet.create({
   bigblue: {
    marginTop :20,
    marginLeft :margle,fontSize: 20,width:165,
+//    height:40
+  },
+ bigblue2: {
+   marginTop :20,
+   fontSize: 20,width:165,
 //    height:40
   }
 })
