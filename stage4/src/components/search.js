@@ -27,7 +27,7 @@ class Search extends Component {
    
 
     getDataByName() {
-        AsyncStorage.getItem("user").then((responce) => {
+        AsyncStorage.getItem("userid").then((responce) => {
             var PatientUid = responce
             var array = []
             var foundedData = []

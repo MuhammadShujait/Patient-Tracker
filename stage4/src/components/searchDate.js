@@ -25,7 +25,7 @@ class SearchDate extends Component {
 
 
     getDataByDate() {
-        AsyncStorage.getItem("user").then((responce) => {
+        AsyncStorage.getItem("userid").then((responce) => {
             var PatientUid = responce
             var array = []
             var foundedData = []

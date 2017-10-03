@@ -45,7 +45,7 @@ class Viewpatients extends Component {
      
 
 
-        AsyncStorage.getItem("user").then((responce) => {
+        AsyncStorage.getItem("userid").then((responce) => {
             var array = []
             var PatientUid = responce
             let dataBase = firebase.database().ref("PatientTrackerApplication").child(PatientUid)
@@ -66,20 +66,28 @@ class Viewpatients extends Component {
 
     };
 
-logout(){
-    AsyncStorage.setItem("userid","").then(()=>{
-        this.props.navigation.navigate("Homeroute")
-    }
+        logout(){
+                   AsyncStorage.setItem("userid","").then(()=>{
+                   this.props.navigation.navigate("Homeroute")
+                  }     
+                  )    }
 
-    )
-}
+        checkstorage(){
+            AsyncStorage.getItem("userid").then((respon) => {
+             PatientUid = respon    
 
+               if (PatientUid === null){
+                this.navig()
+          }
+        } ) }
 
-
+        navig(){       
+            this.props.navigation.navigate('Homeroute')   
+                                                          }     
 
     render() {
 
- let swidth = Dimensions.get('window').width
+       let swidth = Dimensions.get('window').width
        let smwidth = (swidth-200)/2
        let bimgwidth = Dimensions.get('window').width*2
        let wdth = Dimensions.get('window').width
@@ -90,7 +98,6 @@ logout(){
 
 
         return (
-
 
 
             <Container>
@@ -119,6 +126,7 @@ logout(){
                   <Content>
 
             
+           {this.checkstorage()}
               {this.handleError()}
 
 

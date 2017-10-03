@@ -31,7 +31,8 @@ class AddPatients extends Component {
      if(
             this.state.name !== '' &&  this.state.disease !== '' && this.state.mediacation !== ''
             && this.state.cost !== '' && this.state.date !== ''
-         ) {     AsyncStorage.getItem("userid").then((responce) => {
+         ) {
+                  AsyncStorage.getItem("userid").then((responce) => {
             var PatientUid = responce
             let obj = {
                 name: this.state.name,
@@ -144,7 +145,7 @@ class AddPatients extends Component {
                <Input       
                         onChangeText={(text) => {
                       this.setState({ name: text })
-                     }}/>  
+                     }} value={this.state.name} />  
             </Item>
 
              <Item floatingLabel>
@@ -153,7 +154,8 @@ class AddPatients extends Component {
               <Input 
                onChangeText={(text) => {
                          this.setState({ disease: text })
-                     }}/>
+                     }}
+                     value={this.state.disease}/>
             </Item>   
 
             <Item floatingLabel>
@@ -162,7 +164,7 @@ class AddPatients extends Component {
               <Input 
                onChangeText={(text) => {
                          this.setState({ mediacation: text })
-                     }}/>
+                     }} value={this.state.mediacation}/>
             </Item>
 
             <Item keyboardType = 'numeric' floatingLabel >
@@ -171,7 +173,7 @@ class AddPatients extends Component {
               <Input
                  onChangeText={(text) => {
                          this.setState({ cost: text })
-                     }}/>
+                     }} value={this.state.cost}/>
             </Item>
 
 

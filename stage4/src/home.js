@@ -62,7 +62,7 @@ export default class  Home extends Component {
     }
   }
 
-   componentWillMount() {
+   componentDidMount() {
      
   this.checkstorage()
 
