@@ -80,6 +80,16 @@ class Submit extends Component {
 
 
             .then(() => {
+                
+                this.setState({
+                    name:'',
+                    disease:'',
+                    medication:'',
+                    date:'',
+                    cost:''
+
+                })
+
                 alert("Data has been Saved.")
             })
          }
