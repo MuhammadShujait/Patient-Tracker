@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
- import { AsyncStorage , StyleSheet,Image,Dimensions  } from 'react-native';
+ import { AsyncStorage , StyleSheet,Image,Dimensions,BackHandler  } from 'react-native';
 import { Container, Root, Header, Content, Form, Item, Button, Input, Label, Footer, FooterTab, Text,
   Left, Body, Right,  Icon, Title ,Toast  } from 'native-base'
 import * as firebase from "firebase";
@@ -77,8 +77,14 @@ class AddPatients extends Component {
 
    }
     }
+
+
     componentWillMount() {
         console.disableYellowBox = true
+      BackHandler.addEventListener("backPress" , ()=>{
+      BackHandler.exitApp()
+    })
+
     }
 
     logout(){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions  } from 'react-native';
+import { View,  TextInput,  AsyncStorage,StyleSheet,Image,Dimensions ,BackHandler } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text,
      Separator , Item, Input, Button,Footer,FooterTab,  Left, Body, Right,  Icon, Title   } from 'native-base';
@@ -13,6 +13,9 @@ class SearchDate extends Component {
     }
     componentWillMount() {
         console.disableYellowBox = true
+         BackHandler.addEventListener("backPress" , ()=>{
+         BackHandler.exitApp()
+         })
     }
     constructor() {
         super()

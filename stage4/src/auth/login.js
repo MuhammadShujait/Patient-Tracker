@@ -1,8 +1,4 @@
 
-
-
-
-
 import React, { Component } from 'react';
 import {  AsyncStorage,Dimensions,Image } from 'react-native';
 import { Container, Header, Button, Text,

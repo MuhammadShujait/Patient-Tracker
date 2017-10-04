@@ -47,7 +47,7 @@
 // }
 
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet ,Image,Dimensions,AsyncStorage } from 'react-native';
+import { AppRegistry, BackHandler ,  View, StyleSheet ,Image,Dimensions,AsyncStorage } from 'react-native';
 import { Container, Header, Content, Button, Text,Item ,Icon,Input,Toast,Body,Title } from 'native-base';
 
 
@@ -61,6 +61,16 @@ export default class  Home extends Component {
       showToast: false
     }
   }
+
+  
+  componentWillMount() {
+    
+    BackHandler.addEventListener("backPress" , ()=>{
+      BackHandler.exitApp()
+    })
+
+  }
+  
 
    componentDidMount() {
      

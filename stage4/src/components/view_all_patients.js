@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {    AsyncStorage, StyleSheet,Image,Dimensions  } from 'react-native';
+import {    AsyncStorage, StyleSheet,Image,Dimensions ,BackHandler } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem,  Separator,Footer
     ,FooterTab,Button, Text, Spinner,Left,Right,Body,Icon, Fab,View,  Title   } from 'native-base';
@@ -25,10 +25,13 @@ class Viewpatients extends Component {
     componentWillMount() {
         console.disableYellowBox = true
 
-        this.setState({ loading: true })
+         this.setState({ loading: true })
 
-        this.getPatients()
+         this.getPatients()
         
+         BackHandler.addEventListener("backPress" , ()=>{
+         BackHandler.exitApp()
+         })
         
 
 
